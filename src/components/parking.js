@@ -1,10 +1,16 @@
-import React from 'react'
 
-import { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 
-const parking = () => {
+
+
+const Parking = () => {
 
     const available_parking = useState(['small-vehicles','small-and-big-vehicles'])
+
+    const [price, setprice] = useState('') 
+    const [selectedslot, setselectedslot] = useState('')
+
+    
 
     const parking_slots = {
         'small-vehicles':{
@@ -32,28 +38,28 @@ const parking = () => {
         
      }
 
-    // const onchangeSlotSelecte = (e) => {
-    //     var selected_slot = e.target.value
-    //     // setplatformSelected(selectedp)
-    //     // var sensor = Object.keys(rsProducts[selectedp])
-    //     // // console.log(sensor)
-    //     // setallowedSensor(sensor)
+    const onchangeSlotSelected = (e) => {
+        var selected_slot = e.target.value
+        // setselectedslot(selected_slot)
+        var price = parking_slots[selected_slot]['cost']
+        console.log(price)
+        // setallowedSensor(sensor)
      
      
-    //  }
+     }
   return (
-    <div>
-        <Select
-       onChange={onAdm0Chnage}>
-       <option value="" hidden>Adm0</option>
-         {customoptions(adm0Array)}
+    <div className='slots'>
+        <select
+       onChange={onchangeSlotSelected}>
+       <option value="Available Parking" hidden>Choose Parking</option>
+         {customoptions(available_parking)}
 
           
-       </Select>
+       </select>
 
       
     </div>
   )
 }
 
-export default parking
+export default Parking
